@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<!-- use jQuery 1.X, which supports old browsers too -->
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<!-- will be checked in 20 seconds -->
+<script>
+  window.loaded = {};
+
+  function done(name) {
+    console.log("Done: " + name);
+    loaded[name] = true;
+    $(".test." + name).addClass("success");
+  }
+
+  // inferred to have failed
+  function failed(name) {
+    console.log("Failed: " + name);
+    $(".test." + name).addClass("failure");
+  }
+</script>
+
+<style>
+  .test {
+    background-color: #ddd;
+    width: 100%;
+    padding: 20px 10px;
+    margin: 20px 0;
+  }
+  .test.success {background-color: #0c0;}
+  .test.failure {background-color: #c00;}
+</style>
+
+</head>
+<body>
+
+<h3>
+  This file must be hosted on an insecure (http://) connection to properly test the redirect, otherwise the tests will be aborted by mixed-content blocking.
+</h3>
+
+<div class="test script_control_https">
+  <strong>Control:</strong> &lt;script&gt; tag for HTTPS wzrd.in asset.
+</div>
+
+<div class="test script_control_http">
+  <strong>Control:</strong> &lt;script&gt; tag for HTTP wzrd.in asset.
+</div>
+
+<div class="test script_redirect">
+  <strong>Test:</strong> &lt;script&gt; tag for HTTP->HTTPS wzrd.in asset.
+</div>
+
+<div class="test cors_control_https">
+  <strong>Control:</strong> CORS request for HTTPS wzrd.in asset.
+</div>
+
+<div class="test cors_control_http">
+  <strong>Control:</strong> CORS request for HTTP wzrd.in asset.
+</div>
+
+<div class="test cors_redirect">
+  <strong>Test:</strong> CORS request for HTTP->HTTPS wzrd.in asset.
+</div>
+
+<!-- control: <script> loading of .js on HTTPS  -->
+<script src="https://wzrd.in/standalone/citation@0.8.1" onload="done('script_control_https')"></script>
+
+<!-- control: <script> loading of .js on HTTP  -->
+<script src="http://wzrd.konklone.io/standalone/q@1.1.2" onload="done('script_control_http')"></script>
+
+<!-- test: <script> loading of .js on HTTP->HTTPS redirect -->
+<script src="http://wzrd.in/standalone/concat-stream@1.4.7" onload="done('script_redirect')"></script>
+
+<!-- test: CORS, on a separate script to avoid caching -->
+<script>
+  var cors_control_https = "https://wzrd.in/standalone/underscore@1.7.0";
+  $.get(cors_control_https, function() {
+    done('cors_control_https');
+  }).fail(function() {
+    failed('cors_control_https');
+  });
+
+  var cors_control_http = "http://wzrd.konklone.io/standalone/async@0.9.0";
+  $.get(cors_control_http, function() {
+    done('cors_control_http');
+  }).fail(function() {
+    failed('cors_control_http');
+  });
+
+  var cors_redirect = "http://wzrd.in/standalone/qs@2.3.3";
+  $.get(cors_redirect, function() {
+    done('cors_redirect');
+  }).fail(function() {
+    failed('cors_redirect');
+  });
+
+  // after 10s, if the two <script> tags aren't done, deem them failures
+  setTimeout(function() {
+    var names = [
+      'script_control_https', 'script_control_http', 'script_redirect',
+      'cors_control_https',   'cors_control_http',   'cors_redirect'
+    ];
+    for (var i=0; i<names.length; i++)
+      if (!loaded[names[i]]) failed(names[i]);
+  }, 10 * 1000)
+</script>
+
+</body>
+</html>
