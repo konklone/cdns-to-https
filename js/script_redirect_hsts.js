@@ -1,7 +1,7 @@
 
 /**
   Meant to be accessed via <script> at:
-  http://cdn.konklone.io/script_redirect_hsts.js
+  http://www.cdn.konklone.io/script_redirect_hsts.js
 
   This should load over a 301 redirect from HTTP to HTTPS.
   (*With* Strict Transport.)
