@@ -2,14 +2,13 @@
 <html>
 <head>
 <!-- use jQuery 1.X, which supports old browsers too -->
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="/jquery-1.11.2.min.js"></script>
 
-<script>window._cors = true;</script>
+<script>window._cors = false;</script>
 <!--[if lte IE 9]>
 <script>window._cors = false</script>
 <![endif]-->
 
-<!-- will be checked in 20 seconds -->
 <script>
   window.loaded = {};
 
@@ -56,8 +55,8 @@
 <div class="test script_control_https">
   <strong>Control:</strong> &lt;script&gt; tag for HTTPS asset:
   <code>
-    <a href="https://wzrd.in/standalone/citation@0.8.1">
-      https://wzrd.in/standalone/citation@0.8.1
+    <a href="https://cdn.konklone.io/script_control_https.js">
+      https://cdn.konklone.io/script_control_https.js
     </a>
   </code>
 </div>
@@ -65,8 +64,8 @@
 <div class="test script_control_http">
   <strong>Control:</strong> &lt;script&gt; tag for HTTP asset.
   <code>
-    <a href="http://wzrd.konklone.io/standalone/q@1.1.2">
-      http://wzrd.konklone.io/standalone/q@1.1.2
+    <a href="http://plain-cdn.konklone.io/script_control_http.js">
+      http://plain-cdn.konklone.io/script_control_http.js
     </a>
   </code>
 </div>
@@ -74,7 +73,7 @@
 <div class="test script_redirect">
   <strong>Test:</strong> &lt;script&gt; tag for HTTP->HTTPS asset redirect.
   <code>
-    <a href="http://wzrd.in/standalone/concat-stream@1.4.7">
+    <a href="https://cdn.konklone.io/script_control_redirect.js">
       http://wzrd.in/standalone/concat-stream@1.4.7
     </a>
   </code>
@@ -109,13 +108,10 @@
 
 <script>
 
-  if (!window._cors)
-    $(".cors").hide();
+  if (!window._cors) $(".cors").hide();
 
   // control: <script> loading of .js on HTTPS
-  $.getScript("https://wzrd.in/standalone/citation@0.8.1", function() {
-    done('script_control_https');
-  });
+  $.getScript("https://cdn.konklone.io/script_control_https.js");
 
   // control: <script> loading of .js on HTTP
   $.getScript("http://wzrd.konklone.io/standalone/q@1.1.2", function() {
