@@ -42,23 +42,33 @@ To support IE6, the test server supports SSLv3 connections, [which is insecure](
 
 ### Results
 
-The short of it is:
-
-* [... everyone? ...] supports the `<script>` redirect.
-* [... everyone? ...] that supports CORS supports the CORS redirect, as long as CORS headers are present at redirect-time.
-
-On **Internet Explorer 6** on Windows XP SP3:
-
 ![IE6 on Win XP SP3](results/ie6-winxp.png)
 
-If it works on IE6, it'll work anywhere, right? Here are results on other combinations:
+These results were snapshotted on February 2, 2015, at commit [4bf9cbd94088f6545ef24a39375c6760cfc1e9af](https://github.com/konklone/cdns-to-https/commit/4bf9cbd94088f6545ef24a39375c6760cfc1e9af).
 
-* ... TODO ...
+You can comb through [all the screenshots](result/) for detailed results.
 
+The short of it:
+
+* **Everyone** supports the `<script>` redirect. This is by far the most common way that CDN resources are used.
+
+* CORS redirects are **widely supported**, as long as CORS headers are present at redirect-time. There are some issues:
+
+  * iOS (all versions) and Android (below 4.4) don't properly redirect CORS requests because of [a WebView bug with preflight requests](http://stackoverflow.com/a/23013964/16075).
+
+  * Very old versions of Firefox (e.g. 3.6) appear to not follow CORS redirects, though available information suggests it should be fine.
+
+  * Very old versions of Chrome (e.g. 14) do not follow CORS redirects, I believe because of [an old WebKit bug](https://bugs.webkit.org/show_bug.cgi?id=57600.)
+
+  * Desktop Safari doesn't seem to handle CORS redirects very well, but it needs a bit more testing - BrowserStack didn't give very good screenshots.
+
+Some browsers do not properly support CORS at all (Opera before 12, IE before 10), and so are unaffected by a redirect.
 
 ### Conclusion: CDNs should redirect to HTTPS
 
-CDNs need to **force redirects to HTTPS**, so that even insecure pages served over `http://` that embedded a protocol-relative URL _still_ have to fetch the HTTPS version.
+The only hiccup a CDN might face during redirect are on users of CORS requests, and only on some mobile browsers, old desktop browsers, and possibly desktop Safari.
+
+
 
 **Why bother? Insecure pages using secure resources could just be MITMed and modified anyway.**
 
