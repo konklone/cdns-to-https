@@ -2,7 +2,7 @@
 <html>
 <head>
 <!-- use jQuery 1.X, which supports old browsers too -->
-<script src="/jquery-1.11.2.min.js"></script>
+<script src="jquery-1.11.2.min.js"></script>
 
 <script>window._cors = false;</script>
 <!--[if lte IE 9]>
@@ -12,15 +12,14 @@
 <script>
   window.loaded = {};
 
+  // Called *by* the loaded scripts themselves.
   function done(name) {
-    // console.log("Done: " + name);
     loaded[name] = true;
     $(".test." + name).addClass("success");
   }
 
-  // inferred to have failed
+  // Called after a delay, when inferred to have failed.
   function failed(name) {
-    // console.log("Failed: " + name);
     $(".test." + name).addClass("failure");
   }
 </script>
@@ -147,7 +146,7 @@
     });
   }
 
-  // after 10s, if the <script> tags aren't done, deem them failures
+  // after 10s, if the tests aren't successes, deem them failures
   setTimeout(function() {
     var names = [
       'script_control_https', 'script_control_http', 'script_redirect',
