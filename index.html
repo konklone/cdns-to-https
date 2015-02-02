@@ -33,6 +33,9 @@
     padding: 20px 10px;
     margin: 20px 0;
   }
+  .test::before {content: "TESTING."; text-transform: uppercase; padding-right: 10px; font-weight: normal;}
+  .test.success::before {content: "PASSED."; font-weight: bold;}
+  .test.failure::before {content: "FAILED."; font-weight: bold;}
   .test.success {background-color: #0c0;}
   .test.failure {background-color: #c00;}
 </style>
