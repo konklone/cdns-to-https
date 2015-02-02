@@ -1,10 +1,16 @@
-## Forcing HTTP->HTTPS on CDNs
+## Moving CDNs to HTTPS
 
-A testing site for demonstrating the effects of a 3rd party CDN forcing HTTPS via a redirect.
+Testing the effects of a 3rd party CDN (e.g. `ajax.googleapis.com` or `cdnjs.com`) forcing HTTPS via a redirect.
 
-Will everything still work? Will sites that already linked their `<script>` to the `http://` URL still load the script?
+> [http://konklone.io/cdns-to-https]
 
-The answer is **Yes.** [Jump to the tests.](#tests)
+* Will `<script>` tags to `http://` successfully follow a 301 redirect to `https://`?
+* Will CORS requests to `http://` successfully follow a 301 redirect to `https://`?
+* Is there a good reason to do this?
+
+The answer to all of these is **Yes.**
+
+Jump to the [tests](#testing-redirects), and the [conclusions](#conclusion-cdns-should-redirect-to-https).
 
 ### Background
 
@@ -20,6 +26,7 @@ But now that HTTPS is fast, easy and increasingly necessary, **protocol-relative
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 ```
 
+In fact: what CDNs need to do is redirect HTTP requests to HTTP, so that even insecure pages will fetch secure resources.
 
 ## Testing redirects
 
@@ -44,18 +51,32 @@ On **Internet Explorer 6** on Windows XP SP3:
 
 ![IE6 on Win XP SP3](results/ie6-winxp.png)
 
+If it works on IE6, it'll work anywhere, right? Here are results on other combinations:
+
+* ... TODO ...
+
 
 ### Conclusion: CDNs should redirect to HTTPS
 
 CDNs need to **force redirects to HTTPS**, so that even insecure pages served over `http://` that embedded a protocol-relative URL _still_ have to fetch the HTTPS version.
 
-**But wouldn't those pages still have to make an insecure redirect anyway?**
+**Why bother? Insecure pages using secure resources could just be MITMed and modified anyway.**
 
-Not if the CDN also then adds **[Strict Transport Security](https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security)**, an HTTP header that instructs browsers to make all requests over HTTPS.
+CDNs are much more likely to be attacked than most of the individual sites that use them. They are a high-value target.
 
-If a browser sees an `http://` URL for a site that it knows has enabled Strict Transport, it will skip directly to HTTPS without the insecure redirect.
+Using other domains for assets also increases the surface area of attack, opening up side-channel vulnerabilities like DNS poisoning.
 
-**They'll have to get the insecure redirect at least once, right?**
+Here's a [real life example](http://www.theregister.co.uk/2014/11/27/syrian_electronic_army_hack_newspaper_sites/) of the Syrian Electronic Army attacking a news site by DNS poisoning the subdomain that the news site was using as an asset CDN.
+
+More generally, all unencrypted traffic should be considered sensitive and [correlatable in unpredictable ways](https://www.propublica.org/article/spy-agencies-probe-angry-birds-and-other-apps-for-personal-data). This is why the [web is moving to HTTPS](https://w3ctag.github.io/web-https/), [one way or another](https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure). The more traffic on the web that moves over to HTTPS, the easier it gets, and CDNs should play their part.
+
+**But wouldn't the redirect itself be insecure anyway?**
+
+Not if the CDN also enables **[Strict Transport Security](https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security)**, an HTTP header that instructs browsers to make all requests over HTTPS.
+
+If a browser sees an `http://` URL for a site that it knows has enabled Strict Transport, it will skip directly to HTTPS without issuing the initial insecure request.
+
+**They'll still have to get the insecure redirect at least once in order to see the Strict Transport header, right?**
 
 Even that first insecure request can be eliminated if CDN takes the final step of **[hardcoding their site into browsers](https://hstspreload.appspot.com/)** as HTTPS-only.
 
