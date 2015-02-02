@@ -122,27 +122,29 @@
 
 <script>
 
+  var cachebuster = "?" + new Date().getTime().toString();
+
   if (!window._cors) $(".cors").hide();
 
   // control: <script> loading of .js on HTTPS
-  $.getScript("https://cdn.konklone.io/js/script_control_https.js");
+  $.getScript("https://cdn.konklone.io/js/script_control_https.js" + cachebuster);
 
   // control: <script> loading of .js on HTTP
-  $.getScript("http://plain-cdn.konklone.io/js/script_control_http.js");
+  $.getScript("http://plain-cdn.konklone.io/js/script_control_http.js" + cachebuster);
 
   // test: <script> loading of .js on HTTP->HTTPS redirect (no HSTS)
-  $.getScript("http://cdn.konklone.io/js/script_redirect.js");
+  $.getScript("http://cdn.konklone.io/js/script_redirect.js" + cachebuster);
 
 
   if (window._cors) {
     // control: CORS loading of HTTPS
-    $.get("https://cdn.konklone.io/js/cors_control_https.js");
+    $.get("https://cdn.konklone.io/js/cors_control_https.js" + cachebuster);
 
     // control: CORS loading of HTTP
-    $.get("http://plain-cdn.konklone.io/js/cors_control_http.js");
+    $.get("http://plain-cdn.konklone.io/js/cors_control_http.js" + cachebuster);
 
     // test: CORS on HTTP->HTTPS redirect
-    $.get("http://cdn.konklone.io/js/cors_redirect.js");
+    $.get("http://cdn.konklone.io/js/cors_redirect.js" + cachebuster);
   }
 
   // after 10s, if the tests aren't successes, deem them failures
