@@ -117,9 +117,7 @@
   $.getScript("http://plain-cdn.konklone.io/script_control_http.js");
 
   // test: <script> loading of .js on HTTP->HTTPS redirect
-  $.getScript("http://wzrd.in/standalone/concat-stream@1.4.7", function() {
-    done('script_redirect');
-  });
+  $.getScript("http://cdn.konklone.io/script_redirect.js");
 
   if (window._cors) {
     // control: CORS loading of HTTPS
