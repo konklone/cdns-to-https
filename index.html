@@ -2,7 +2,7 @@
 <html>
 <head>
 <!-- use jQuery 1.X, which supports old browsers too -->
-<script src="jquery-1.11.2.min.js"></script>
+<script src="js/jquery-1.11.2.min.js"></script>
 
 <script>window._cors = true;</script>
 <!--[if lte IE 9]>
@@ -54,8 +54,8 @@
 <div class="test script_control_https">
   <strong>Control:</strong> &lt;script&gt; tag for HTTPS asset:
   <code>
-    <a href="https://cdn.konklone.io/script_control_https.js">
-      https://cdn.konklone.io/script_control_https.js
+    <a href="https://cdn.konklone.io/js/script_control_https.js">
+      https://cdn.konklone.io/js/script_control_https.js
     </a>
   </code>
 </div>
@@ -63,8 +63,8 @@
 <div class="test script_control_http">
   <strong>Control:</strong> &lt;script&gt; tag for HTTP asset.
   <code>
-    <a href="http://plain-cdn.konklone.io/script_control_http.js">
-      http://plain-cdn.konklone.io/script_control_http.js
+    <a href="http://plain-cdn.konklone.io/js/script_control_http.js">
+      http://plain-cdn.konklone.io/js/script_control_http.js
     </a>
   </code>
 </div>
@@ -72,8 +72,8 @@
 <div class="test script_redirect">
   <strong>Test:</strong> &lt;script&gt; tag for HTTP->HTTPS asset redirect.
   <code>
-    <a href="http://cdn.konklone.io/script_redirect.js">
-      http://cdn.konklone.io/script_redirect.js
+    <a href="http://cdn.konklone.io/js/script_redirect.js">
+      http://cdn.konklone.io/js/script_redirect.js
     </a>
   </code>
 </div>
@@ -81,8 +81,8 @@
 <div class="test cors cors_control_https">
   <strong>Control:</strong> CORS GET request for HTTPS asset.
   <code>
-    <a href="https://cdn.konklone.io/cors_control_https.js">
-      https://cdn.konklone.io/cors_control_https.js
+    <a href="https://cdn.konklone.io/js/cors_control_https.js">
+      https://cdn.konklone.io/js/cors_control_https.js
     </a>
   </code>
 </div>
@@ -90,8 +90,8 @@
 <div class="test cors cors_control_http">
   <strong>Control:</strong> CORS GET request for HTTP asset.
   <code>
-    <a href="http://plain-cdn.konklone.io/cors_control_http.js">
-      http://plain-cdn.konklone.io/cors_control_http.js
+    <a href="http://plain-cdn.konklone.io/js/cors_control_http.js">
+      http://plain-cdn.konklone.io/js/cors_control_http.js
     </a>
   </code>
 </div>
@@ -99,8 +99,8 @@
 <div class="test cors cors_redirect">
   <strong>Test:</strong> CORS GET request for HTTP->HTTPS asset redirect.
   <code>
-    <a href="http://cdn.konklone.io/cors_redirect.js">
-      http://cdn.konklone.io/cors_redirect.js
+    <a href="http://cdn.konklone.io/js/cors_redirect.js">
+      http://cdn.konklone.io/js/cors_redirect.js
     </a>
   </code>
 </div>
@@ -110,24 +110,24 @@
   if (!window._cors) $(".cors").hide();
 
   // control: <script> loading of .js on HTTPS
-  $.getScript("https://cdn.konklone.io/script_control_https.js");
+  $.getScript("https://cdn.konklone.io/js/script_control_https.js");
 
   // control: <script> loading of .js on HTTP
-  $.getScript("http://plain-cdn.konklone.io/script_control_http.js");
+  $.getScript("http://plain-cdn.konklone.io/js/script_control_http.js");
 
   // test: <script> loading of .js on HTTP->HTTPS redirect (no HSTS)
-  $.getScript("http://cdn.konklone.io/script_redirect.js");
+  $.getScript("http://cdn.konklone.io/js/script_redirect.js");
 
 
   if (window._cors) {
     // control: CORS loading of HTTPS
-    $.get("https://cdn.konklone.io/cors_control_https.js");
+    $.get("https://cdn.konklone.io/js/cors_control_https.js");
 
     // control: CORS loading of HTTP
-    $.get("http://plain-cdn.konklone.io/cors_control_http.js");
+    $.get("http://plain-cdn.konklone.io/js/cors_control_http.js");
 
     // test: CORS on HTTP->HTTPS redirect
-    $.get("http://cdn.konklone.io/cors_redirect.js");
+    $.get("http://cdn.konklone.io/js/cors_redirect.js");
   }
 
   // after 10s, if the tests aren't successes, deem them failures
