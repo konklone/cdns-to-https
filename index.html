@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
 <head>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Average' rel='stylesheet' type='text/css'>
+
 <!-- use jQuery 1.X, which supports old browsers too -->
 <script src="js/jquery-1.11.2.min.js"></script>
 
@@ -25,6 +28,12 @@
 </script>
 
 <style>
+  body {
+    padding: 20px;
+    font-family: Open Sans, Arial, sans-serif;
+    width: 90%;
+  }
+  h2 {margin-top: 0; padding: 0;}
   .test {
     background-color: #ddd;
     width: 100%;
@@ -41,15 +50,21 @@
 </head>
 <body>
 
-<h3>
-  This page must be hosted on an insecure (http://) connection to properly test the redirect, otherwise the tests will be interfered with by mixed-content blocking.
-</h3>
+<h2>Forcing an HTTP->HTTPS redirect for CDN-served assets.</h2>
+
+<p>
+  This page <strong>must be hosted on an insecure (http://) connection</strong> to properly test the redirect, otherwise the tests will be interfered with by mixed-content blocking.
+</p>
 
 <ul>
-  <li>wzrd.in and wzrd.konklone.io point to the same server.</li>
-  <li>wzrd.in redirects HTTP to HTTPS.</li>
-  <li>wzrd.konklone.io serves only HTTP.</li>
+  <li>plain-cdn.konklone.io serves only HTTP.</li>
+  <li>cdn.konklone.io redirects HTTP to HTTPS (no Strict Transport).</li>
+  <li>Tests will be marked as failed after 10s of no success.</li>
 </ul>
+
+<p>
+  Code and server config is <a href="https://github.com/konklone/cdn-testing">on GitHub</a>. Test by <a href="https://twitter.com/konklone">Eric Mill</a>, who wants all CDNs to force redirects from HTTP to HTTPS.
+</p>
 
 <div class="test script_control_https">
   <strong>Control:</strong> &lt;script&gt; tag for HTTPS asset:
