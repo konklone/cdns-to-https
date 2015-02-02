@@ -50,20 +50,28 @@
 </head>
 <body>
 
-<h2>Forcing an HTTP->HTTPS redirect for CDN-served assets.</h2>
+<h2>Moving CDNs to HTTPS</h2>
 
 <p>
-  This page <strong>must be hosted on an insecure (http://) connection</strong> to properly test the redirect, otherwise the tests will be interfered with by mixed-content blocking.
+  Testing the effects of redirecting HTTP -> HTTPS for assets hosted by third party CDNs (e.g. <code>code.jquery.com</code> or <code>ajax.googleapis.com</code>).
+</p>
+
+<p>
+  <strong><a href="https://github.com/konklone/cdns-to-https#moving-cdns-to-https">Read more background here.</a></strong>
+</p>
+
+<p>
+  This page must be hosted on an insecure (<code>http://</code>) connection to properly test the redirect, otherwise mixed-content blocking will interfere with the tests.
 </p>
 
 <ul>
-  <li>plain-cdn.konklone.io serves only HTTP.</li>
-  <li>cdn.konklone.io redirects HTTP to HTTPS (no Strict Transport).</li>
-  <li>Resource URLs are fetched with a timestamp so that they are not cached.</li>
+  <li><code>plain-cdn.konklone.io</code> serves only HTTP.</li>
+  <li><code>cdn.konklone.io</code> redirects HTTP to HTTPS (no Strict Transport).</li>
+  <li>Fetched resources are not cached.</li>
 </ul>
 
 <p>
-  Code and server config is <a href="https://github.com/konklone/cdn-testing">on GitHub</a>. Test by <a href="https://twitter.com/konklone">Eric Mill</a>, who wants all CDNs to force redirects from HTTP to HTTPS.
+  Code and server config is <a href="https://github.com/konklone/cdns-to-https">on GitHub</a>. Test by <a href="https://twitter.com/konklone">Eric Mill</a>, who wants <a href="https://github.com/konklone/cdns-to-https#conclusion-cdns-should-redirect-to-https">all CDNs to force redirects from HTTP to HTTPS</a>.
 </p>
 
 <div class="test script_control_https">
