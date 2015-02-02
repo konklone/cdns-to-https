@@ -114,9 +114,7 @@
   $.getScript("https://cdn.konklone.io/script_control_https.js");
 
   // control: <script> loading of .js on HTTP
-  $.getScript("http://wzrd.konklone.io/standalone/q@1.1.2", function() {
-    done('script_control_http');
-  });
+  $.getScript("http://plain-cdn.konklone.io/script_control_http.js");
 
   // test: <script> loading of .js on HTTP->HTTPS redirect
   $.getScript("http://wzrd.in/standalone/concat-stream@1.4.7", function() {
