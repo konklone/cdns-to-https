@@ -58,7 +58,7 @@ To support IE6, the test server supports SSLv3 connections, [which is insecure](
 
 These results were snapshotted on February 2, 2015, at commit [4bf9cbd94088f6545ef24a39375c6760cfc1e9af](https://github.com/konklone/cdns-to-https/commit/4bf9cbd94088f6545ef24a39375c6760cfc1e9af).
 
-You can comb through [all the screenshots](result/) for detailed results.
+You can comb through [all the screenshots](results/) for detailed results.
 
 ![IE6 on Win XP SP3](results/ie6-winxp.png)
 
