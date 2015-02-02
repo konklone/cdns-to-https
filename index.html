@@ -142,8 +142,8 @@
 <div class="test cors cors_redirect_hsts">
   <strong>Test:</strong> CORS GET request for HTTP->HTTPS asset redirect (Strict Transport).
   <code>
-    <a href="http://cdn.konklone.io/js/cors_redirect_hsts.js">
-      http://cdn.konklone.io/js/cors_redirect_hsts.js
+    <a href="http://www.cdn.konklone.io/js/cors_redirect_hsts.js">
+      http://www.cdn.konklone.io/js/cors_redirect_hsts.js
     </a>
   </code>
 </div>
@@ -164,7 +164,7 @@
   $.getScript("http://cdn.konklone.io/js/script_redirect.js" + cachebuster);
 
   // test: <script> loading of .js on HTTP->HTTPS redirect (HSTS)
-  $.getScript("http://cdn.konklone.io/js/script_redirect_hsts.js" + cachebuster);
+  $.getScript("http://www.cdn.konklone.io/js/script_redirect_hsts.js" + cachebuster);
 
 
   if (window._cors) {
@@ -178,7 +178,7 @@
     $.get("http://cdn.konklone.io/js/cors_redirect.js" + cachebuster);
 
     // test: CORS on HTTP->HTTPS redirect (HSTS)
-    $.get("http://cdn.konklone.io/js/cors_redirect_hsts.js" + cachebuster);
+    $.get("http://www.cdn.konklone.io/js/cors_redirect_hsts.js" + cachebuster);
   }
 
   // after 10s, if the tests aren't successes, deem them failures
