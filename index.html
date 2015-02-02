@@ -39,28 +39,34 @@
   This file must be hosted on an insecure (http://) connection to properly test the redirect, otherwise the tests will be aborted by mixed-content blocking.
 </h3>
 
+<ul>
+  <li>wzrd.in and wzrd.konklone.io point to the same server.</li>
+  <li>wzrd.in redirects HTTP to HTTPS.</li>
+  <li>wzrd.konklone.io serves only HTTP.</li>
+</ul>
+
 <div class="test script_control_https">
-  <strong>Control:</strong> &lt;script&gt; tag for HTTPS wzrd.in asset.
+  <strong>Control:</strong> &lt;script&gt; tag for HTTPS asset.
 </div>
 
 <div class="test script_control_http">
-  <strong>Control:</strong> &lt;script&gt; tag for HTTP wzrd.in asset.
+  <strong>Control:</strong> &lt;script&gt; tag for HTTP asset.
 </div>
 
 <div class="test script_redirect">
-  <strong>Test:</strong> &lt;script&gt; tag for HTTP->HTTPS wzrd.in asset.
+  <strong>Test:</strong> &lt;script&gt; tag for HTTP->HTTPS asset redirect.
 </div>
 
 <div class="test cors_control_https">
-  <strong>Control:</strong> CORS request for HTTPS wzrd.in asset.
+  <strong>Control:</strong> CORS request for HTTPS asset.
 </div>
 
 <div class="test cors_control_http">
-  <strong>Control:</strong> CORS request for HTTP wzrd.in asset.
+  <strong>Control:</strong> CORS request for HTTP asset.
 </div>
 
 <div class="test cors_redirect">
-  <strong>Test:</strong> CORS request for HTTP->HTTPS wzrd.in asset.
+  <strong>Test:</strong> CORS request for HTTP->HTTPS asset redirect.
 </div>
 
 <!-- control: <script> loading of .js on HTTPS  -->
