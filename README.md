@@ -4,7 +4,7 @@ A testing site for demonstrating the effects of a 3rd party CDN forcing HTTPS vi
 
 Will everything still work? Will sites that already linked their `<script>` to the `http://` URL still load the script?
 
-_[ .. almost done proving that the answer is YES ..]_
+The answer is **Yes.** [Jump to the tests.](#tests)
 
 ### Background
 
@@ -19,6 +19,8 @@ But now that HTTPS is fast, easy and increasingly necessary, **protocol-relative
 ```html
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 ```
+
+### CDNs should redirect to HTTPS
 
 In fact, what CDNs really need to do is **force redirects to HTTPS**, so that even insecure pages served over `http://` that embedded a protocol-relative URL _still_ have to fetch the HTTPS version.
 
@@ -39,3 +41,26 @@ Chrome maintains a list (also used by Firefox and Safari) of sites that come bak
 ## Conclusion
 
 In this way, CDNs can shift all past, present, and future users of their resources to all-HTTPS, all the time.
+
+## Testing redirect
+
+The tests evaluate fetching `<script>` resources, and making CORS GET requests, in 3 scenarios:
+
+* Fetching an `https://` resource directly. (A control.)
+* Fetching an `http://` resource directly. (A control.)
+* Fetching an `http://` resource that offers a 301 redirect to an `https://` resource. (The test.)
+
+These are each done via `<script>`, and then via CORS (except on IE9 and below, which do not support CORS).
+
+To support IE6, the test server supports SSLv3 connections, [which is insecure](https://community.qualys.com/blogs/securitylabs/2014/10/15/ssl-3-is-dead-killed-by-the-poodle-attack).
+
+### Results
+
+The short of it is:
+
+* [... everyone? ...] supports the `<script>` redirect.
+* [... everyone? ...] that supports CORS supports the CORS redirect, as long as CORS headers are _present at redirect-time_.
+
+On **Internet Explorer 6** on Windows XP SP3:
+
+![IE6 on Win XP SP3](results/ie6-winxp.png)
