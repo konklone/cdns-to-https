@@ -42,14 +42,6 @@ To support IE6, the test server supports SSLv3 connections, [which is insecure](
 
 ### Results
 
-![IE6 on Win XP SP3](results/ie6-winxp.png)
-
-These results were snapshotted on February 2, 2015, at commit [4bf9cbd94088f6545ef24a39375c6760cfc1e9af](https://github.com/konklone/cdns-to-https/commit/4bf9cbd94088f6545ef24a39375c6760cfc1e9af).
-
-You can comb through [all the screenshots](result/) for detailed results.
-
-The short of it:
-
 * **Everyone** supports the `<script>` redirect. This is by far the most common way that CDN resources are used.
 
 * CORS redirects are **widely supported**, as long as CORS headers are present at redirect-time. There are some issues:
@@ -62,7 +54,13 @@ The short of it:
 
   * Desktop Safari doesn't seem to handle CORS redirects very well, but it needs a bit more testing - BrowserStack didn't give very good screenshots.
 
-Some browsers do not properly support CORS at all (Opera before 12, IE before 10), and so are unaffected by a redirect.
+  * Some browsers do not properly support CORS at all (Opera before 12, IE before 10), and so are unaffected by a redirect.
+
+These results were snapshotted on February 2, 2015, at commit [4bf9cbd94088f6545ef24a39375c6760cfc1e9af](https://github.com/konklone/cdns-to-https/commit/4bf9cbd94088f6545ef24a39375c6760cfc1e9af).
+
+You can comb through [all the screenshots](result/) for detailed results.
+
+![IE6 on Win XP SP3](results/ie6-winxp.png)
 
 ### Conclusion: CDNs should redirect to HTTPS
 
