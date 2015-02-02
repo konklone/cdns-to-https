@@ -69,6 +69,7 @@
 <ul>
   <li><code>plain-cdn.konklone.io</code> serves only HTTP.</li>
   <li><code>cdn.konklone.io</code> redirects HTTP to HTTPS (no Strict Transport).</li>
+  <li><code>www.cdn.konklone.io</code> redirects HTTP to HTTPS (Strict Transport, so make sure to run test at least twice).
   <li>Fetched resources are not cached.</li>
 </ul>
 
@@ -103,6 +104,15 @@
   </code>
 </div>
 
+<div class="test script_redirect_hsts">
+  <strong>Test:</strong> &lt;script&gt; tag for HTTP->HTTPS asset redirect (Strict Transport).
+  <code>
+    <a href="http://www.cdn.konklone.io/js/script_redirect_hsts.js">
+      http://www.cdn.konklone.io/js/script_redirect_hsts.js
+    </a>
+  </code>
+</div>
+
 <div class="test cors cors_control_https">
   <strong>Control:</strong> CORS GET request for HTTPS asset.
   <code>
@@ -130,6 +140,15 @@
   </code>
 </div>
 
+<div class="test cors cors_redirect_hsts">
+  <strong>Test:</strong> CORS GET request for HTTP->HTTPS asset redirect (Strict Transport).
+  <code>
+    <a href="http://www.cdn.konklone.io/js/cors_redirect_hsts.js">
+      http://www.cdn.konklone.io/js/cors_redirect_hsts.js
+    </a>
+  </code>
+</div>
+
 <script>
 
   var cachebuster = "?" + new Date().getTime().toString();
@@ -145,6 +164,9 @@
   // test: <script> loading of .js on HTTP->HTTPS redirect (no HSTS)
   $.getScript("http://cdn.konklone.io/js/script_redirect.js" + cachebuster);
 
+  // test: <script> loading of .js on HTTP->HTTPS redirect (HSTS)
+  $.getScript("http://www.cdn.konklone.io/js/script_redirect_hsts.js" + cachebuster);
+
 
   if (window._cors) {
     // control: CORS loading of HTTPS
@@ -153,15 +175,20 @@
     // control: CORS loading of HTTP
     $.get("http://plain-cdn.konklone.io/js/cors_control_http.js" + cachebuster);
 
-    // test: CORS on HTTP->HTTPS redirect
+    // test: CORS on HTTP->HTTPS redirect (no HSTS)
     $.get("http://cdn.konklone.io/js/cors_redirect.js" + cachebuster);
+
+    // test: CORS on HTTP->HTTPS redirect (HSTS)
+    $.get("http://www.cdn.konklone.io/js/cors_redirect_hsts.js" + cachebuster);
   }
 
   // after 10s, if the tests aren't successes, deem them failures
   setTimeout(function() {
     var names = [
-      'script_control_https', 'script_control_http', 'script_redirect',
-      'cors_control_https',   'cors_control_http',   'cors_redirect'
+      'script_control_https', 'script_control_http',
+      'script_redirect', 'script_redirect_hsts',
+      'cors_control_https', 'cors_control_http',
+      'cors_redirect', 'cors_redirect_hsts'
     ];
     for (var i=0; i<names.length; i++)
       if (!loaded[names[i]]) failed(names[i]);
