@@ -64,9 +64,13 @@ You can comb through [all the screenshots](results/) for detailed results.
 
 ### Conclusion: CDNs should redirect to HTTPS
 
-The only hiccup a CDN might face during redirect are on users of CORS requests, and only on some mobile browsers, old desktop browsers, and possibly desktop Safari.
+`<script>` tags are completely unaffected by 301 redirects from HTTP to HTTPS, even as far back as IE6.
 
+The only hiccup a CDN might face during redirect are on users of CORS requests -- and only then on some mobile browsers, old desktop browsers, and possibly desktop Safari.
 
+Unless a CDN has an extremely high CORS usage among very diverse clients, the benefits of a secure web seem to me to clearly outweigh the costs.
+
+CDNs should redirect HTTP to HTTPS.
 
 **Why bother? Insecure pages using secure resources could just be MITMed and modified anyway.**
 
