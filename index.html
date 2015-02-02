@@ -4,7 +4,7 @@
 <!-- use jQuery 1.X, which supports old browsers too -->
 <script src="jquery-1.11.2.min.js"></script>
 
-<script>window._cors = false;</script>
+<script>window._cors = true;</script>
 <!--[if lte IE 9]>
 <script>window._cors = false</script>
 <![endif]-->
@@ -81,8 +81,8 @@
 <div class="test cors cors_control_https">
   <strong>Control:</strong> CORS GET request for HTTPS asset.
   <code>
-    <a href="https://wzrd.in/standalone/underscore@1.7.0">
-      https://wzrd.in/standalone/underscore@1.7.0
+    <a href="https://cdn.konklone.io/cors_control_https.js">
+      https://cdn.konklone.io/cors_control_https.js
     </a>
   </code>
 </div>
@@ -90,8 +90,8 @@
 <div class="test cors cors_control_http">
   <strong>Control:</strong> CORS GET request for HTTP asset.
   <code>
-    <a href="http://wzrd.konklone.io/standalone/async@0.9.0">
-      http://wzrd.konklone.io/standalone/async@0.9.0
+    <a href="http://plain-cdn.konklone.io/cors_control_http.js">
+      http://plain-cdn.konklone.io/cors_control_http.js
     </a>
   </code>
 </div>
@@ -99,8 +99,8 @@
 <div class="test cors cors_redirect">
   <strong>Test:</strong> CORS GET request for HTTP->HTTPS asset redirect.
   <code>
-    <a href="http://wzrd.konklone.io/standalone/qs@2.3.3">
-      http://wzrd.konklone.io/standalone/qs@2.3.3
+    <a href="http://cdn.konklone.io/cors_redirect.js">
+      http://cdn.konklone.io/cors_redirect.js
     </a>
   </code>
 </div>
@@ -120,30 +120,14 @@
 
 
   if (window._cors) {
-
     // control: CORS loading of HTTPS
-    var cors_control_https = "https://wzrd.in/standalone/underscore@1.7.0";
-    $.get(cors_control_https, function() {
-      done('cors_control_https');
-    }).fail(function() {
-      failed('cors_control_https');
-    });
+    $.get("https://cdn.konklone.io/cors_control_https.js");
 
     // control: CORS loading of HTTP
-    var cors_control_http = "http://wzrd.konklone.io/standalone/async@0.9.0";
-    $.get(cors_control_http, function() {
-      done('cors_control_http');
-    }).fail(function() {
-      failed('cors_control_http');
-    });
+    $.get("http://plain-cdn.konklone.io/cors_control_http.js");
 
     // test: CORS on HTTP->HTTPS redirect
-    var cors_redirect = "http://wzrd.in/standalone/qs@2.3.3";
-    $.get(cors_redirect, function() {
-      done('cors_redirect');
-    }).fail(function() {
-      failed('cors_redirect');
-    });
+    $.get("http://cdn.konklone.io/cors_redirect.js");
   }
 
   // after 10s, if the tests aren't successes, deem them failures
