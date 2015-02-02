@@ -73,8 +73,8 @@
 <div class="test script_redirect">
   <strong>Test:</strong> &lt;script&gt; tag for HTTP->HTTPS asset redirect.
   <code>
-    <a href="https://cdn.konklone.io/script_control_redirect.js">
-      http://wzrd.in/standalone/concat-stream@1.4.7
+    <a href="http://cdn.konklone.io/script_redirect.js">
+      http://cdn.konklone.io/script_redirect.js
     </a>
   </code>
 </div>
@@ -116,10 +116,12 @@
   // control: <script> loading of .js on HTTP
   $.getScript("http://plain-cdn.konklone.io/script_control_http.js");
 
-  // test: <script> loading of .js on HTTP->HTTPS redirect
+  // test: <script> loading of .js on HTTP->HTTPS redirect (no HSTS)
   $.getScript("http://cdn.konklone.io/script_redirect.js");
 
+
   if (window._cors) {
+
     // control: CORS loading of HTTPS
     var cors_control_https = "https://wzrd.in/standalone/underscore@1.7.0";
     $.get(cors_control_https, function() {
