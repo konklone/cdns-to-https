@@ -82,7 +82,7 @@ Even that first insecure request can be eliminated if CDN takes the final step o
 
 Chrome maintains a list (also used by Firefox and Safari) of sites that come baked into the browser as Strict-Transport-enabled, meaning that even the first request is protected.
 
-In this way, CDNs can shift all **past, present, and future** users of their resources to all-HTTPS, all the time.
+In this way, CDNs can immediately shift all **past, present, and future** users of their resources to all-HTTPS, all the time.
 
 ## Public domain
 
