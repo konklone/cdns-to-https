@@ -20,29 +20,8 @@ But now that HTTPS is fast, easy and increasingly necessary, **protocol-relative
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 ```
 
-### CDNs should redirect to HTTPS
 
-In fact, what CDNs really need to do is **force redirects to HTTPS**, so that even insecure pages served over `http://` that embedded a protocol-relative URL _still_ have to fetch the HTTPS version.
-
-**But wouldn't those pages still have to make an insecure redirect anyway?**
-
-Not if the CDN also then adds **[Strict Transport Security](https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security)**, an HTTP header that instructs browsers to make all requests over HTTPS.
-
-If a browser sees an `http://` URL for a site that it knows has enabled Strict Transport, it will skip directly to HTTPS without the insecure redirect.
-
-**They'll have to get the insecure redirect at least once, right?**
-
-Yes, though that's not a huge issue, given how often major CDN resources get served.
-
-But even that first insecure request can be eliminated if CDN takes the final step of **[hardcoding their site into browsers](https://hstspreload.appspot.com/)** as HTTPS-only.
-
-Chrome maintains a list (also used by Firefox and Safari) of sites that come baked into the browser as Strict-Transport-enabled, meaning that even the first request is protected.
-
-## Conclusion
-
-In this way, CDNs can shift all past, present, and future users of their resources to all-HTTPS, all the time.
-
-## Testing redirect
+## Testing redirects
 
 The tests evaluate fetching `<script>` resources, and making CORS GET requests, in 3 scenarios:
 
@@ -64,3 +43,26 @@ The short of it is:
 On **Internet Explorer 6** on Windows XP SP3:
 
 ![IE6 on Win XP SP3](results/ie6-winxp.png)
+
+
+### Conclusion: CDNs should redirect to HTTPS
+
+CDNs need to **force redirects to HTTPS**, so that even insecure pages served over `http://` that embedded a protocol-relative URL _still_ have to fetch the HTTPS version.
+
+**But wouldn't those pages still have to make an insecure redirect anyway?**
+
+Not if the CDN also then adds **[Strict Transport Security](https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security)**, an HTTP header that instructs browsers to make all requests over HTTPS.
+
+If a browser sees an `http://` URL for a site that it knows has enabled Strict Transport, it will skip directly to HTTPS without the insecure redirect.
+
+**They'll have to get the insecure redirect at least once, right?**
+
+Even that first insecure request can be eliminated if CDN takes the final step of **[hardcoding their site into browsers](https://hstspreload.appspot.com/)** as HTTPS-only.
+
+Chrome maintains a list (also used by Firefox and Safari) of sites that come baked into the browser as Strict-Transport-enabled, meaning that even the first request is protected.
+
+In this way, CDNs can shift all **past, present, and future** users of their resources to all-HTTPS, all the time.
+
+## Public domain
+
+All of this is [released to the public domain under CC0](LICENSE.md).
