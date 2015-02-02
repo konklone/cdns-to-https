@@ -6,7 +6,7 @@
   This should load directly over HTTPS, as a control.
 
   Used to pass the test at:
-  http://konklone.io/cdn-testing/
+  http://konklone.io/cdns-to-https/
 **/
 
 done('cors_control_https');
