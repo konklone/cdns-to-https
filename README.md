@@ -26,7 +26,7 @@ But now that HTTPS is fast, easy and increasingly necessary, **protocol-relative
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 ```
 
-In fact: what CDNs need to do is redirect HTTP requests to HTTP, so that even insecure pages will fetch secure resources.
+In fact: what CDNs need to do is redirect HTTP requests to HTTPS, so that even insecure pages will fetch secure resources.
 
 ## Testing redirects
 
