@@ -48,11 +48,11 @@ To support IE6, the test server supports SSLv3 connections, [which is insecure](
 
   * iOS (all versions) and Android (below 4.4) don't properly redirect CORS requests because of [a WebView bug with preflight requests](http://stackoverflow.com/a/23013964/16075).
 
+  * Desktop Safari doesn't handle CORS redirects, for unknown reasons.
+
   * Very old versions of Firefox (e.g. 3.6) appear to not follow CORS redirects, though available information suggests it should be fine.
 
   * Very old versions of Chrome (e.g. 14) do not follow CORS redirects, I believe because of [an old WebKit bug](https://bugs.webkit.org/show_bug.cgi?id=57600).
-
-  * Desktop Safari doesn't seem to handle CORS redirects very well, but it needs more testing.
 
   * Some browsers do not properly support CORS at all (Opera before 12, IE before 10), and so are unaffected by a redirect.
 
@@ -66,7 +66,7 @@ You can comb through [all the screenshots](results/) for detailed results.
 
 `<script>` tags are completely unaffected by 301 redirects from HTTP to HTTPS, even as far back as IE6.
 
-The only hiccup a CDN might face during redirect are on users of CORS requests -- and only then on some mobile browsers, old desktop browsers, and possibly desktop Safari.
+The only hiccup a CDN might face during redirect are on users of CORS requests -- and only then on some mobile browsers, desktop Safari, and some other very old desktop browsers.
 
 Unless a CDN has an extremely high CORS usage among very diverse clients, the benefits of a secure web seem to me to clearly outweigh the costs.
 
