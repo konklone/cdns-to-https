@@ -50,9 +50,9 @@ To support IE6, the test server supports SSLv3 connections, [which is insecure](
 
   * Very old versions of Firefox (e.g. 3.6) appear to not follow CORS redirects, though available information suggests it should be fine.
 
-  * Very old versions of Chrome (e.g. 14) do not follow CORS redirects, I believe because of [an old WebKit bug](https://bugs.webkit.org/show_bug.cgi?id=57600.)
+  * Very old versions of Chrome (e.g. 14) do not follow CORS redirects, I believe because of [an old WebKit bug](https://bugs.webkit.org/show_bug.cgi?id=57600).
 
-  * Desktop Safari doesn't seem to handle CORS redirects very well, but it needs a bit more testing - BrowserStack didn't give very good screenshots.
+  * Desktop Safari doesn't seem to handle CORS redirects very well, but it needs more testing.
 
   * Some browsers do not properly support CORS at all (Opera before 12, IE before 10), and so are unaffected by a redirect.
 
