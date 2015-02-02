@@ -45,7 +45,7 @@ To support IE6, the test server supports SSLv3 connections, [which is insecure](
 The short of it is:
 
 * [... everyone? ...] supports the `<script>` redirect.
-* [... everyone? ...] that supports CORS supports the CORS redirect, as long as CORS headers are _present at redirect-time_.
+* [... everyone? ...] that supports CORS supports the CORS redirect, as long as CORS headers are present at redirect-time.
 
 On **Internet Explorer 6** on Windows XP SP3:
 
