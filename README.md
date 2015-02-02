@@ -2,7 +2,7 @@
 
 Testing the effects of a 3rd party CDN (e.g. `ajax.googleapis.com` or `cdnjs.com`) forcing HTTPS via a redirect.
 
-**[http://konklone.io/cdns-to-https](http://konklone.io/cdns-to-https)**
+> **[http://konklone.io/cdns-to-https](http://konklone.io/cdns-to-https)**
 
 * Will `<script>` tags to `http://` successfully follow a 301 redirect to `https://`?
 * Will CORS requests to `http://` successfully follow a 301 redirect to `https://`?
