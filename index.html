@@ -69,6 +69,7 @@
 <ul>
   <li><code>plain-cdn.konklone.io</code> serves only HTTP.</li>
   <li><code>cdn.konklone.io</code> redirects HTTP to HTTPS (no Strict Transport).</li>
+  <li><code>www.cdn.konklone.io</code> redirects HTTP to HTTPS (with Strict Transport set).</li>
   <li>Fetched resources are not cached.</li>
 </ul>
 
@@ -130,6 +131,15 @@
   </code>
 </div>
 
+<div class="test cors cors_hsts">
+  <strong>Test:</strong> CORS GET request for HTTP->HTTPS asset under <a href="https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security">HTTP Strict Transport Security</a>.
+  <code>
+    <a href="http://cdn.konklone.io/js/cors_hsts.js">
+      http://cdn.konklone.io/js/cors_hsts.js
+    </a>
+  </code>
+</div>
+
 <script>
 
   var cachebuster = "?" + new Date().getTime().toString();
@@ -155,13 +165,21 @@
 
     // test: CORS on HTTP->HTTPS redirect
     $.get("http://cdn.konklone.io/js/cors_redirect.js" + cachebuster);
+
+    // test: CORS with HSTS set
+    // this fetches an HTTPS version first, to guarantee that the header is seen. on return, it triggers a second function which then asks for the http:// version (and hopefully does an internal redirect and goes right for the https:// version).
+    function hsts_set() {
+      $.get("http://www.cdn.konklone.io/cors_hsts.js" + cachebuster);
+    }
+    $.get("https://www.cdn.konklone.io/cors_hsts_pre.js" + cachebuster);
   }
 
   // after 10s, if the tests aren't successes, deem them failures
   setTimeout(function() {
     var names = [
       'script_control_https', 'script_control_http', 'script_redirect',
-      'cors_control_https',   'cors_control_http',   'cors_redirect'
+      'cors_control_https',   'cors_control_http',   'cors_redirect',
+      'cors_hsts'
     ];
     for (var i=0; i<names.length; i++)
       if (!loaded[names[i]]) failed(names[i]);
