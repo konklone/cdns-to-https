@@ -169,9 +169,9 @@
     // test: CORS with HSTS set
     // this fetches an HTTPS version first, to guarantee that the header is seen. on return, it triggers a second function which then asks for the http:// version (and hopefully does an internal redirect and goes right for the https:// version).
     function hsts_set() {
-      $.get("http://www.cdn.konklone.io/cors_hsts.js" + cachebuster);
+      $.get("http://www.cdn.konklone.io/js/cors_hsts.js" + cachebuster);
     }
-    $.get("https://www.cdn.konklone.io/cors_hsts_pre.js" + cachebuster);
+    $.get("https://www.cdn.konklone.io/js/cors_hsts_pre.js" + cachebuster);
   }
 
   // after 10s, if the tests aren't successes, deem them failures
