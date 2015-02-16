@@ -34,11 +34,14 @@ What CDNs need to do next is **redirect HTTP requests to HTTPS**, so that even i
 
 The tests evaluate fetching `<script>` resources, and making CORS GET requests, in 3 scenarios:
 
-* Fetching an `https://` resource directly. (A control.)
-* Fetching an `http://` resource directly. (A control.)
-* Fetching an `http://` resource that offers a 301 redirect to an `https://` resource. (The test.)
+* Fetching an `https://` resource directly. (control)
+* Fetching an `http://` resource directly. (control)
+* Fetching an `http://` resource that offers a 301 redirect to an `https://` resource. (experiment)
 
-These are each done via `<script>`, and then via CORS (except on IE9 and below, which do not support CORS).
+These are each done via:
+
+* `<script>` tag 
+* via a CORS GET request (except on IE9 and below, which do not support CORS)
 
 To support IE6, the test server supports SSLv3 connections, [which is insecure](https://community.qualys.com/blogs/securitylabs/2014/10/15/ssl-3-is-dead-killed-by-the-poodle-attack).
 
