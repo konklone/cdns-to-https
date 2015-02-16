@@ -28,7 +28,7 @@ But now that HTTPS is fast, easy and increasingly necessary, **protocol-relative
 
 (And in fact, Google's CDN recently [switched to recommending HTTPS URLs like the above](https://developers.google.com/speed/libraries/devguide?csw=1).)
 
-In fact: what CDNs need to do is redirect HTTP requests to HTTPS, so that even insecure pages will fetch secure resources.
+What CDNs need to do next is **redirect HTTP requests to HTTPS**, so that even insecure pages will fetch secure resources.
 
 ## Testing redirects
 
