@@ -97,7 +97,7 @@ If a browser sees an `http://` URL for a site that it knows has enabled Strict T
 
 Even that first insecure request can be eliminated if CDN takes the final step of **[hardcoding their site into browsers](https://hstspreload.appspot.com/)** as HTTPS-only.
 
-Chrome maintains a list (also used by Firefox and Safari) of sites that come baked into the browser as Strict-Transport-enabled, meaning that even the first request is protected.
+Chrome maintains a list (also used by Firefox, Safari, and upcoming versions of Internet Explorer) of sites that come baked into the browser as Strict-Transport-enabled, meaning that even the first request is protected.
 
 In this way, CDNs can immediately shift all **past, present, and future** users of their resources to all-HTTPS, all the time.
 
